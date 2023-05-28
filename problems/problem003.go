@@ -1,16 +1,26 @@
 package problems
 
 import (
-	"fmt"
-	"math"
+	"projectEuler/commons"
 )
 
-func LargestPrimeFactor(number int64) (largestFactor int) {
-	for factor := 2; factor <= int(math.Sqrt(float64(number))); factor++ {
-		if number%int64(factor) == 0 {
-			largestFactor = factor
-			fmt.Println(factor)
+func LargestPrimeFactor(number int64) int64 {
+	largestFactor := int64(2)
+
+	if commons.EsPrimo(number) {
+		return number
+	}
+
+	for divisor := int64(3); divisor*divisor <= number; divisor += 2 {
+		if number%divisor == 0 {
+			largestFactor = divisor
+			number /= divisor
 		}
 	}
-	return
+
+	if number > largestFactor {
+		largestFactor = number
+	}
+
+	return largestFactor
 }

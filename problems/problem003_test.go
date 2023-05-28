@@ -12,26 +12,10 @@ import "testing"
  */
 
 func TestProblem003(t *testing.T) {
-	t.Run("test largest prime factor 61", func(t *testing.T) {
-		// Arrange
-		number := int64(61)
-		want := 7
-
-		// Act
-		got := LargestPrimeFactor(number)
-
-		// Assert
-		if got != want {
-			t.Errorf("got %d, want %d", got, want)
-		}
-
-	})
-
-	t.Run("test largest prime factor 13_105", func(t *testing.T) {
+	t.Run("test largest prime factor 13_195", func(t *testing.T) {
 		// Arrange
 		number := int64(13_195)
-		// want := []int{5, 7, 13, 29}
-		want := 29
+		want := int64(29)
 
 		// Act
 		got := LargestPrimeFactor(number)

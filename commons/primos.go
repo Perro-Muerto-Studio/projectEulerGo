@@ -2,7 +2,7 @@ package commons
 
 import "math"
 
-func EsPrimo(number int) (primo bool) {
+func EsPrimo(number int64) (primo bool) {
 	switch {
 	case number <= 1:
 	case number == 2:
@@ -14,8 +14,8 @@ func EsPrimo(number int) (primo bool) {
 	return
 }
 
-func esPrimo(number int) bool {
-	for i := 3; float64(i) < math.Sqrt(float64(number)); i += 2 {
+func esPrimo(number int64) bool {
+	for i := int64(3); float64(i) < math.Sqrt(float64(number)); i += 2 {
 		if number%i == 0 {
 			return false
 		}

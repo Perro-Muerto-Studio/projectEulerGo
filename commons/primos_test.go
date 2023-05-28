@@ -18,6 +18,7 @@ func TestPrimos(t *testing.T) {
 		number int
 		primo  bool
 	}{
+		{61, true},
 		{120121, true},
 		{120157, true},
 		{120181, true},
@@ -32,7 +33,7 @@ func TestPrimos(t *testing.T) {
 
 	for _, tt := range primosTest {
 		t.Run(strconv.Itoa(tt.number), func(t *testing.T) {
-			assertTrue(t, esPrimo(tt.number), tt.primo)
+			assertTrue(t, esPrimo(int64(tt.number)), tt.primo)
 		})
 	}
 }
