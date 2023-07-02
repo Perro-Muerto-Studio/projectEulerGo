@@ -29,6 +29,7 @@ func TestPrimos(t *testing.T) {
 		{120233, true},
 		{120247, true},
 		{120277, true},
+		{104743, true},
 	}
 
 	for _, tt := range primosTest {

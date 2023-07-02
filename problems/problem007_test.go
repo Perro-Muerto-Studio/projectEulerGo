@@ -9,7 +9,7 @@ func TestXPrime(t *testing.T) {
 	want := 104743
 
 	// Act
-	got := XPrime(10001)
+	got := XPrime(10_001)
 
 	// Assert
 	if got != want {
