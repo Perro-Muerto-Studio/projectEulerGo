@@ -12,4 +12,6 @@ func main() {
 	fmt.Println("Resultado del problema 004: ", problems.LargestPalindromeProduct())
 	fmt.Println("Resultado del problema 005: ", problems.SmallestMultiple(20))
 	fmt.Println("Resultado del problema 006: ", problems.SumSquareDifference(100))
+	fmt.Println("Resultado del problema 007: ", problems.XPrime(10_001))
+	fmt.Println("Resultado del problema 008: ", problems.LargestProductInSeries(13))
 }
