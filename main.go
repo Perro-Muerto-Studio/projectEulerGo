@@ -14,4 +14,5 @@ func main() {
 	fmt.Println("Resultado del problema 006: ", problems.SumSquareDifference(100))
 	fmt.Println("Resultado del problema 007: ", problems.XPrime(10_001))
 	fmt.Println("Resultado del problema 008: ", problems.LargestProductInSeries(13))
+	fmt.Println("Resultado del problema 009: ", problems.SpecialPythagoreanTriplet(1000))
 }
