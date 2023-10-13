@@ -19,7 +19,7 @@ import "testing"
 func TestSpecialPythagoreanTriplet(t *testing.T) {
 	t.Run("test first pytagorean triplet", func(t *testing.T) {
 		// Arrange
-		want := uint(12)
+		want := uint(60)
 
 		// Act
 		got := SpecialPythagoreanTriplet(12)
