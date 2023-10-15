@@ -70,14 +70,20 @@ func productOf(data [][]int, size int) (product int) {
 		product = max(product, productosPorLinea(linea, size))
 	}
 
+	// Productos en diagonal, de la esquina inferior-derecha
+	// a la esquina superior izquierda
+	for c := 19; c < 4; c-- {
+		log.Println(c)
+	}
+
+	// Productos en diagonal, superior-izquierda a inferior-derecha
 	for c := 0; c <= 16; c++ {
 		for l := 0; l <= 16; l++ {
-			log.Printf(
-				"%d x %d x %d x %d = ",
-				data[c][l], data[c+1][l+1], data[c+2][l+2], data[c+3][l+3],
-			)
+			// log.Print(data[c][l+0] * data[c+1][l+1] * data[c+2][l+2] * data[c+3][l+3])
+			product = max(product, data[c][l+0]*data[c+1][l+1]*data[c+2][l+2]*data[c+3][l+3])
 		}
 	}
+
 	return
 }
 
