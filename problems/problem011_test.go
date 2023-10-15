@@ -37,7 +37,7 @@ import "testing"
 func TestProblem011(t *testing.T) {
 	t.Run("test largest product in a Grid", func(t *testing.T) {
 		// Arrange
-		want := int64(1788696)
+		want := 1788696
 
 		// Act
 		got := LargestProductInAGrid(4)

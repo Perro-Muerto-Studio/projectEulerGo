@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func LargestProductInAGrid(size int) (product int64) {
+func LargestProductInAGrid(size int) (product int) {
 	dataStr := `
     08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
     49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
@@ -37,7 +37,7 @@ func LargestProductInAGrid(size int) (product int64) {
 		var row []int
 		for _, value := range values {
 			n, _ := strconv.Atoi(value)
-			row = append(row, n)
+			row = append(row, int(n))
 		}
 		data = append(data, row)
 	}
@@ -47,36 +47,67 @@ func LargestProductInAGrid(size int) (product int64) {
 	return
 }
 
-func productOf(data [][]int, size int) (product int64) {
+func productOf(data [][]int, size int) (product int) {
+	var side int
 	product = 1
+	side = len(data[0])
 
 	// Producto por línea de arriba a abajo
 	for _, linea := range data {
-		// Producto de izquierda a derecha
-		for i := 0; i <= len(linea)-size; i++ {
-			pLineas := int64(1)
-			for j := 0; j < size; j++ {
-				pLineas *= int64(linea[i+j])
-			}
-			product = max(pLineas, product)
-		}
+		product = max(product, productosPorLinea(linea, size))
+	}
 
-		// Producto de derecha a izquierda
-		for i := len(linea) - 1; i >= 0; i-- {
-			pLineas := int64(1)
-			for j := 0; j < size && (i-j) >= 0; j++ {
-				pLineas *= int64(linea[i-j])
-			}
-			product = max(pLineas, product)
+	// Productos verticales
+	var dataVertical [][]int
+	for i := 0; i < side; i++ {
+		var linea []int
+		for j := 0; j < side; j++ {
+			linea = append(linea, data[j][i])
 		}
-		log.Print(product)
+		dataVertical = append(dataVertical, linea)
+	}
+	for _, linea := range dataVertical {
+		product = max(product, productosPorLinea(linea, size))
+	}
+
+	for c := 0; c <= 16; c++ {
+		for l := 0; l <= 16; l++ {
+			log.Printf(
+				"%d x %d x %d x %d = ",
+				data[c][l], data[c+1][l+1], data[c+2][l+2], data[c+3][l+3],
+			)
+		}
 	}
 	return
 }
 
-func max(a, b int64) int64 {
+func max(a, b int) int {
 	if a > b {
 		return a
 	}
 	return b
+}
+
+func productosPorLinea(linea []int, size int) (producto int) {
+	producto = 1
+	var maxLeft, maxRight int
+	// Producto de izquierda a derecha
+	for i := 0; i <= len(linea)-size; i++ {
+		leftLine := 0
+		for j := 0; j < size; j++ {
+			leftLine *= linea[i+j]
+		}
+		maxLeft = max(maxLeft, leftLine)
+	}
+
+	// Producto de derecha a izquierda
+	for i := len(linea) - 1; i >= 0; i-- {
+		rightLine := 1
+		for j := 0; j < size && (i-j) >= 0; j++ {
+			rightLine *= linea[i-j]
+		}
+		maxRight = max(maxRight, rightLine)
+
+	}
+	return max(maxLeft, maxRight)
 }
